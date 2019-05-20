@@ -1,4 +1,5 @@
 const SAVE_PROFILE = 'SAVE_PROFILE';
+const SAVE_PROFILE_BULK = 'SAVE_PROFILE_BULK';
 const DEFAULT_PROFILE = { LOADING: true };
 
 export default {
@@ -12,13 +13,16 @@ export default {
   },
   actions: {
     async list({ commit }, params = {}) {
-      const profiles = await this.$hydra.profiles.list(params);
-      profiles.forEach((data) => {
+      const profileList = await this.$hydra.profiles.list(params);
+      const profiles = profileList.reduce((memo, data) => {
         const { profile, account } = data;
-        if (!account.id) return;
-        profile.account = account;
-        commit(SAVE_PROFILE, { profile, accountId: account.id });
-      });
+        if (account && account.id) {
+          profile.account = account;
+          memo[account.id] = profile;
+        }
+        return memo;
+      }, {});
+      commit(SAVE_PROFILE_BULK, { profiles });
     },
     lazyList({ getters, dispatch }, params = {}) {
       const profiles = getters.all;
@@ -51,6 +55,12 @@ export default {
       state.profiles = {
         ...state.profiles,
         [accountId]: profile,
+      };
+    },
+    [SAVE_PROFILE_BULK](state, { profiles }) {
+      state.profiles = {
+        ...state.profiles,
+        ...profiles,
       };
     },
   },
