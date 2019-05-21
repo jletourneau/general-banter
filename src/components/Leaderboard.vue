@@ -27,16 +27,22 @@
       <col width="50" />
       <col />
       <col width="100" />
+      <col width="100" />
       <tbody>
         <tr
           v-for="(leader, index) in leaders"
           :key="leader.member"
-          :class="{ 'is-selected': (isAwardable && (index < rewardCount)) }"
+          :class="{ 'is-selected': rewardsFor(index) }"
         >
           <td>
             {{ leader.rank }}.
           </td>
           <td v-text="leader.object.owner.account.identity.username" />
+          <td>
+            <template v-if="rewardsFor(index)">
+              +{{ rewardsFor(index) }}
+            </template>
+          </td>
           <td v-text="leader.object.data.reaction.counter" />
         </tr>
       </tbody>
@@ -129,6 +135,14 @@
       },
       imageFor(reaction) {
         return CUSTOM_REACTS[reaction] || null;
+      },
+      rewardsFor(index) {
+        if (!this.isAwardable) return 0;
+        try {
+          return this.season.data.config.rewards[index].currency;
+        } catch (err) {
+          return 0;
+        }
       },
     },
   };
