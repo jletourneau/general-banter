@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h1 class="title">
+      Users
+    </h1>
     <table class="table is-striped">
       <thead>
         <tr>

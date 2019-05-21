@@ -6,6 +6,7 @@ import hydraClient from './hydraClient';
 
 import devAuth from './modules/developerAuth';
 import profiles from './modules/profiles';
+import objects from './modules/objects';
 import inventory from './modules/inventory';
 
 Vue.use(Vuex);
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
   modules: {
     devAuth,
     profiles,
+    objects,
     inventory,
   },
 });

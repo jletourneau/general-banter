@@ -12,9 +12,9 @@ const routes = [
     meta: { public: true },
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+    path: '/seasons',
+    name: 'seasons',
+    component: () => import(/* webpackChunkName: "seasons" */ '@/views/Seasons.vue'),
     meta: { public: true },
   },
 ];

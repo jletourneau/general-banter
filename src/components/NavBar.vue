@@ -7,17 +7,26 @@
     <div class="container">
       <div class="navbar-menu">
         <div class="navbar-start">
+          <template v-if="isLoggedIn">
+            <router-link
+              :to="{ name: 'home' }"
+              class="navbar-item is-tab"
+            >
+              Users
+            </router-link>
+            <router-link
+              :to="{ name: 'seasons' }"
+              class="navbar-item is-tab"
+            >
+              Seasons
+            </router-link>
+          </template>
           <router-link
+            v-else
             :to="{ name: 'home' }"
             class="navbar-item is-tab"
           >
             Home
-          </router-link>
-          <router-link
-            :to="{ name: 'about' }"
-            class="navbar-item is-tab"
-          >
-            About
           </router-link>
         </div>
       </div>
