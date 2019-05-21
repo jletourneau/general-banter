@@ -4,18 +4,18 @@
       <thead>
         <tr>
           <th>User</th>
+          <th>Tagline</th>
           <th>Shields</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="(profile, accountId) in profiles"
-          :key="accountId"
+          v-for="profile in rankedProfiles"
+          :key="profile.account_id"
         >
           <td v-text="profile.account.identity.username" />
-          <td>
-            {{ shieldCount(accountId) }}
-          </td>
+          <td v-text="taglineFor(profile)" />
+          <td v-text="shieldCount(profile)" />
         </tr>
       </tbody>
     </table>
@@ -32,6 +32,16 @@
         profiles: 'profiles/all',
         itemCount: 'inventory/get',
       }),
+      rankedProfiles() {
+        const profiles = Object.values(this.profiles);
+        return profiles.sort((a, b) => {
+          const shieldsA = this.shieldCount(a) || 0;
+          const shieldsB = this.shieldCount(b) || 0;
+          if (shieldsA > shieldsB) return -1;
+          if (shieldsB < shieldsA) return 1;
+          return 0;
+        });
+      },
     },
     watch: {
       profiles() {
@@ -41,7 +51,10 @@
       },
     },
     mounted() {
-      this.getProfiles({ page_size: 100 });
+      this.getProfiles({
+        page_size: 100,
+        account_fields: ['server_data'],
+      });
     },
     methods: {
       ...mapActions({
@@ -51,9 +64,19 @@
       fetchShields(accountId) {
         this.getItems({ accountId, slug: 'shields' });
       },
-      shieldCount(accountId) {
-        const inventory = this.itemCount({ accountId, slug: 'shields' });
-        return inventory.count || 0;
+      taglineFor(profile) {
+        try {
+          return profile.account.server_data.tag_data.tagline;
+        } catch (err) {
+          return '';
+        }
+      },
+      shieldCount(profile) {
+        const inventory = this.itemCount({
+          accountId: profile.account_id,
+          slug: 'shields',
+        });
+        return inventory.count;
       },
     },
   };
