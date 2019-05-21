@@ -29,6 +29,7 @@
       objectTypeSlug: { type: String, default: '' },
       leaderboardSlug: { type: String, default: '' },
       grouping: { type: Object, default: () => {} },
+      season: { type: Object, default: () => {} },
     },
     computed: {
       ...mapGetters({
