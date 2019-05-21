@@ -41,8 +41,11 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="!isAwardable">
-      Not enough reactions accumulated yet for rewards.
+    <div v-if="!enoughLeaders">
+      Not enough members of this leaderboard for rewards.
+    </div>
+    <div v-else-if="!enoughReacts">
+      Leader has not accumulated enough reactions for rewards.
     </div>
   </div>
 </template>
@@ -84,16 +87,24 @@
         if (this.awardableOnly) return this.isAwardable;
         return true;
       },
-      isAwardable() {
+      enoughLeaders() {
         try {
-          return (
-            this.leaders.length >= this.season.data.config.min_popularity
-          ) && (
-            this.leaders[0].object.data.reaction.counter >= this.season.data.config.min_activity
-          );
+          return this.leaders.length
+            >= this.season.data.config.min_popularity;
         } catch (err) {
           return false;
         }
+      },
+      enoughReacts() {
+        try {
+          return this.leaders[0].object.data.reaction.counter
+            >= this.season.data.config.min_activity;
+        } catch (err) {
+          return false;
+        }
+      },
+      isAwardable() {
+        return this.enoughLeaders && this.enoughReacts;
       },
       rewardCount() {
         try {
