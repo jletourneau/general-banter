@@ -12,10 +12,14 @@ const routes = [
     meta: { public: true },
   },
   {
-    path: '/seasons',
-    name: 'seasons',
-    component: () => import(/* webpackChunkName: "seasons" */ '@/views/Seasons.vue'),
-    meta: { public: true },
+    path: '/current-season',
+    name: 'current-season',
+    component: () => import(/* webpackChunkName: "seasons" */ '@/views/CurrentSeason.vue'),
+  },
+  {
+    path: '/last-season',
+    name: 'last-season',
+    component: () => import(/* webpackChunkName: "seasons" */ '@/views/LastSeason.vue'),
   },
 ];
 

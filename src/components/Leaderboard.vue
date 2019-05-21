@@ -1,12 +1,17 @@
 <template>
   <div>
-    <table class="table">
+    <table class="table is-narrow is-striped is-fullwidth">
+      <col width="50" />
+      <col />
+      <col width="100" />
       <tbody>
         <tr
           v-for="leader in leaders"
           :key="leader.member"
         >
-          <td v-text="leader.rank" />
+          <td>
+            {{ leader.rank }}.
+          </td>
           <td v-text="leader.object.owner.account.identity.username" />
           <td v-text="leader.object.data.reaction.counter" />
         </tr>

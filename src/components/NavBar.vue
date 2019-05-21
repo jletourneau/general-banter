@@ -15,10 +15,16 @@
               Users
             </router-link>
             <router-link
-              :to="{ name: 'seasons' }"
+              :to="{ name: 'current-season' }"
               class="navbar-item is-tab"
             >
-              Seasons
+              Current season
+            </router-link>
+            <router-link
+              :to="{ name: 'last-season' }"
+              class="navbar-item is-tab"
+            >
+              Last season
             </router-link>
           </template>
           <router-link

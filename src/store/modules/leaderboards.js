@@ -20,7 +20,6 @@ export default {
         memo[`group.${key}`] = grouping[key];
         return memo;
       }, {});
-      console.log('a', groupingParams);
       const leaders = await this.$hydra.leaderboards.fetchPage(
         { objectTypeSlug, leaderboard, params: groupingParams },
       );

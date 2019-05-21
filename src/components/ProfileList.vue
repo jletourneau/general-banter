@@ -3,7 +3,7 @@
     <h1 class="title">
       Users
     </h1>
-    <table class="table is-striped">
+    <table class="table is-narrow is-striped">
       <thead>
         <tr>
           <th>User</th>
