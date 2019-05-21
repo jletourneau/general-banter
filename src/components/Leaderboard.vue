@@ -1,5 +1,7 @@
 <template>
   <div
+    v-if="showLeaderboard"
+    :class="{ 'is-success': isAwardable }"
     class="box"
   >
     <h2
@@ -17,7 +19,9 @@
         class="react custom"
         alt=""
       />
-      <span>{{ reaction.reaction }}</span>
+      <span>
+        {{ reaction.reaction }}
+      </span>
     </h2>
     <table class="table is-narrow is-striped is-fullwidth">
       <col width="50" />
@@ -25,8 +29,9 @@
       <col width="100" />
       <tbody>
         <tr
-          v-for="leader in leaders"
+          v-for="(leader, index) in leaders"
           :key="leader.member"
+          :class="{ 'is-selected': (isAwardable && (index < rewardCount)) }"
         >
           <td>
             {{ leader.rank }}.
@@ -36,6 +41,9 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="!isAwardable">
+      Not enough reactions accumulated yet for rewards.
+    </div>
   </div>
 </template>
 
@@ -52,6 +60,7 @@
       leaderboardSlug: { type: String, default: '' },
       season: { type: Object, default: () => {} },
       reaction: { type: Object, default: () => {} },
+      awardableOnly: { type: Boolean, default: false },
     },
     computed: {
       ...mapGetters({
@@ -70,6 +79,28 @@
             reaction: this.reaction.reaction,
           },
         };
+      },
+      showLeaderboard() {
+        if (this.awardableOnly) return this.isAwardable;
+        return true;
+      },
+      isAwardable() {
+        try {
+          return (
+            this.leaders.length >= this.season.data.config.min_popularity
+          ) && (
+            this.leaders[0].object.data.reaction.counter >= this.season.data.config.min_activity
+          );
+        } catch (err) {
+          return false;
+        }
+      },
+      rewardCount() {
+        try {
+          return this.season.data.config.rewards.length;
+        } catch (err) {
+          return 0;
+        }
       },
     },
     mounted() {

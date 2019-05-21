@@ -2,6 +2,7 @@
   <div>
     <season-leaderboards
       :season="lastSeason"
+      :awardable-only="true"
       heading="Last season"
     />
   </div>

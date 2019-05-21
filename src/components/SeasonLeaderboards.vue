@@ -16,6 +16,7 @@
       :key="reaction.reaction"
       :season="season"
       :reaction="reaction"
+      :awardable-only="awardableOnly"
       object-type-slug="season-participant"
       leaderboard-slug="season-leaderboard"
     />
@@ -33,6 +34,7 @@
     props: {
       heading: { type: String, default: '' },
       season: { type: Object, default: () => null },
+      awardableOnly: { type: Boolean, default: false },
     },
     methods: {
       formatDate(dateString) {
