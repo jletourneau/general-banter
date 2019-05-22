@@ -25,6 +25,7 @@
     </h2>
     <table class="table is-narrow is-striped is-fullwidth">
       <col width="50" />
+      <col width="200" />
       <col />
       <col width="100" />
       <col width="100" />
@@ -32,6 +33,7 @@
         <tr>
           <th>Rank</th>
           <th>User</th>
+          <th>Tagline</th>
           <th>Count</th>
           <th>Rewards</th>
         </tr>
@@ -46,6 +48,7 @@
             {{ leader.rank }}.
           </td>
           <td v-text="leader.object.owner.account.identity.username" />
+          <td v-text="taglineFor(leader)">
           <td v-text="leader.object.data.reaction.counter" />
           <td>
             <template v-if="rewardsFor(index)">
@@ -104,7 +107,7 @@
       enoughLeaders() {
         try {
           return this.leaders.length
-            >= this.season.data.config.min_popularity;
+          >= this.season.data.config.min_popularity;
         } catch (err) {
           return false;
         }
@@ -112,7 +115,7 @@
       enoughReacts() {
         try {
           return this.leaders[0].object.data.reaction.counter
-            >= this.season.data.config.min_activity;
+          >= this.season.data.config.min_activity;
         } catch (err) {
           return false;
         }
@@ -137,6 +140,13 @@
       }),
       fetch() {
         this.fetchLeaderboard(this.leaderboardParams);
+      },
+      taglineFor(leader) {
+        try {
+          return leader.object.owner.account.server_data.tag_data.tagline;
+        } catch (err) {
+          return '';
+        }
       },
       emojiFor(reaction) {
         return DEFAULT_REACTS[reaction] || null;

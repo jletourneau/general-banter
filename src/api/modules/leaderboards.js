@@ -3,7 +3,7 @@ export default (client) => {
   const fetchPage = async ({ objectTypeSlug, leaderboard, params }) => {
     const fullParams = {
       fields: ['data'],
-      owner_account_fields: ['identity'],
+      owner_account_fields: ['identity', 'server_data'],
       ...params,
     };
     const response = await client.get(
