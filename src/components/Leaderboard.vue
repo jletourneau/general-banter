@@ -28,6 +28,14 @@
       <col />
       <col width="100" />
       <col width="100" />
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>User</th>
+          <th>Count</th>
+          <th>Rewards</th>
+        </tr>
+      </thead>
       <tbody>
         <tr
           v-for="(leader, index) in leaders"
@@ -38,12 +46,12 @@
             {{ leader.rank }}.
           </td>
           <td v-text="leader.object.owner.account.identity.username" />
+          <td v-text="leader.object.data.reaction.counter" />
           <td>
             <template v-if="rewardsFor(index)">
-              +{{ rewardsFor(index) }}
+              ⭐{{ rewardsFor(index) }}
             </template>
           </td>
-          <td v-text="leader.object.data.reaction.counter" />
         </tr>
       </tbody>
     </table>
@@ -151,6 +159,7 @@
 <style lang="scss" scoped>
   .title {
     align-items: center;
+    margin-bottom: 1rem;
   }
   .react {
     margin-right: 0.5rem;

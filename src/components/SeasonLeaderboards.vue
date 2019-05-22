@@ -59,7 +59,7 @@
             memo.push({ reaction, count: reactions[reaction] });
             return memo;
           }, [])
-          .filter(reaction => reaction.count >= (minPopularity - 1))
+          .filter(reaction => reaction.count >= (minPopularity - 2))
           .sort((a, b) => {
             if (a.reaction < b.reaction) return -1;
             if (b.reaction < a.reaction) return 1;
