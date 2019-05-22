@@ -42,7 +42,7 @@
         <tr
           v-for="(leader, index) in leaders"
           :key="leader.member"
-          :class="{ 'is-selected': rewardsFor(index) }"
+          :class="{ 'reward': rewardsFor(index) }"
         >
           <td>
             {{ leader.rank }}.
@@ -178,5 +178,8 @@
   }
   .react.custom {
     height: 3rem;
+  }
+  .reward td {
+    background: transparentize($green, 0.8);
   }
 </style>
