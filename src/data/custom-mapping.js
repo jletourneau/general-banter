@@ -1193,7 +1193,7 @@ const reacts = {
 };
 
 // https://emoji.slack-edge.com/T8ECJ729E/${react}/${filename}
-const urlRoot = 'https://emoji.slack-edge.com/T8ECJ729E/';
+const urlRoot = 'https://emoji.slack-edge.com/T8ECJ729E';
 
 export default Object.keys(reacts).reduce((memo, name) => {
   memo[name] = `${urlRoot}/${name}/${reacts[name]}`;
