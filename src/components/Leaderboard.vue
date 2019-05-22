@@ -149,7 +149,8 @@
         }
       },
       emojiFor(reaction) {
-        return DEFAULT_REACTS[reaction] || null;
+        const modifierStripped = reaction.split('::')[0];
+        return DEFAULT_REACTS[modifierStripped] || null;
       },
       imageFor(reaction) {
         return CUSTOM_REACTS[reaction] || null;
