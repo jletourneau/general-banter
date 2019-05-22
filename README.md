@@ -1,4 +1,4 @@
-# wbplay
+# General Banter dashboard
 
 ## Project setup
 ```
