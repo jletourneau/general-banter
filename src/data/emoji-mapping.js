@@ -403,7 +403,6 @@ export default {
   "factory": "🏭",
   "fairy": "🧚",
   "fallen_leaf": "🍂",
-  "family": "👨‍👩‍👦",
   "family": "👪",
   "fast_forward": "⏩",
   "fax": "📠",
@@ -1035,7 +1034,6 @@ export default {
   "man-walking": "🚶‍♂",
   "man-wearing-turban": "👳‍♂",
   "man-with-bunny-ears-partying": "👯‍♂",
-  "man-woman-boy": "👨‍👩‍👦",
   "man-woman-boy": "👪",
   "man-woman-boy-boy": "👨‍👩‍👦‍👦",
   "man-woman-girl": "👨‍👩‍👧",
@@ -1700,5 +1698,5 @@ export default {
   "zero": "0⃣",
   "zipper_mouth_face": "🤐",
   "zombie": "🧟",
-  "zzz": "💤"
+  "zzz": "💤",
 };
