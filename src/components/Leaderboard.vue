@@ -48,7 +48,7 @@
             {{ leader.rank }}.
           </td>
           <td v-text="leader.object.owner.account.identity.username" />
-          <td v-text="taglineFor(leader)">
+          <td v-text="taglineFor(leader)" />
           <td v-text="leader.object.data.reaction.counter" />
           <td>
             <template v-if="rewardsFor(index)">
@@ -106,16 +106,16 @@
       },
       enoughLeaders() {
         try {
-          return this.leaders.length
-          >= this.season.data.config.min_popularity;
+          return this.leaders.length >= this.season.data.config.min_popularity;
         } catch (err) {
           return false;
         }
       },
       enoughReacts() {
         try {
-          return this.leaders[0].object.data.reaction.counter
-          >= this.season.data.config.min_activity;
+          const { counter } = this.leaders[0].object.data.reaction;
+          const { min_activity: minActivity } = this.season.data.config;
+          return counter >= minActivity;
         } catch (err) {
           return false;
         }
