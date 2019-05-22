@@ -37,8 +37,15 @@
       awardableOnly: { type: Boolean, default: false },
     },
     methods: {
+      toDate(dateString) {
+        try {
+          return new Date(dateString.replace(/[+-]00:?00$/, 'Z'));
+        } catch (err) {
+          return dateString;
+        }
+      },
       formatDate(dateString) {
-        const d = new Date(dateString);
+        const d = this.toDate(dateString);
         return [
           d.toLocaleDateString(),
           d.toLocaleTimeString(),

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <pre>{{ currentSeason }}</pre>
     <season-leaderboards
       :season="currentSeason"
       heading="Current season’s leaderboards"
@@ -25,8 +26,8 @@
       currentSeason() {
         return Object
           .values(this.objects('season') || {})
-          .filter(season => NOW >= new Date(season.data.start))
-          .filter(season => NOW < new Date(season.data.end))
+          .filter(season => NOW >= this.toDate(season.data.start))
+          .filter(season => NOW < this.toDate(season.data.end))
           .reverse()[0];
       },
     },
@@ -37,6 +38,13 @@
       ...mapActions({
         getObjects: 'objects/lazyList',
       }),
+      toDate(dateString) {
+        try {
+          return new Date(dateString.replace(/[+-]00:?00$/, 'Z'));
+        } catch (err) {
+          return dateString;
+        }
+      },
       getSeasons() {
         this.getObjects({
           slug: 'season',
