@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title">
-      Users
+      Shields leaderboard
     </h1>
     <table class="table is-narrow is-striped">
       <thead>
@@ -29,7 +29,7 @@
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
-    name: 'ProfileList',
+    name: 'ShieldsLeaderboard',
     computed: {
       ...mapGetters({
         profiles: 'profiles/all',

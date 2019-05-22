@@ -3,7 +3,7 @@
     <season-leaderboards
       :season="lastSeason"
       :awardable-only="true"
-      heading="Last season"
+      heading="Last season’s leaderboards"
     />
   </div>
 </template>

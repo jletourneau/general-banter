@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <profile-list
+    <shields-leaderboard
       v-if="isLoggedIn"
     />
     <login-form
@@ -12,14 +12,14 @@
 <script>
   import { mapGetters } from 'vuex';
 
-  const ProfileList = () => import('@/components/ProfileList.vue');
+  const ShieldsLeaderboard = () => import('@/components/ShieldsLeaderboard.vue');
   const LoginForm = () => import('@/components/LoginForm.vue');
 
   export default {
     name: 'Home',
     components: {
       LoginForm,
-      ProfileList,
+      ShieldsLeaderboard,
     },
     computed: {
       ...mapGetters({

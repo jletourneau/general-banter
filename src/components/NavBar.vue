@@ -12,7 +12,7 @@
               :to="{ name: 'home' }"
               class="navbar-item is-tab"
             >
-              Users
+              Shields leaderboard
             </router-link>
             <router-link
               :to="{ name: 'current-season' }"

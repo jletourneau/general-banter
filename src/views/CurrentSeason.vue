@@ -2,7 +2,7 @@
   <div>
     <season-leaderboards
       :season="currentSeason"
-      heading="Current season leaderboards"
+      heading="Current season’s leaderboards"
     />
   </div>
 </template>
