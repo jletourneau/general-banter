@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>{{ currentSeason }}</pre>
     <season-leaderboards
       :season="currentSeason"
       heading="Current season’s leaderboards"
