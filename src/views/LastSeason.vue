@@ -23,10 +23,23 @@
       ...mapGetters({
         objects: 'objects/all',
       }),
+      seasons() {
+        return Object.values(this.objects('season') || {});
+      },
       lastSeason() {
-        return Object
-          .values(this.objects('season') || {})
+        return this
+          .seasons
           .filter(season => NOW >= this.$toDate(season.data.end))
+          .sort((a, b) => {
+            if (a.data.end < b.data.end) return -1;
+            if (a.data.end > b.data.end) return 1;
+            return 0;
+          })
+          .sort((a, b) => {
+            if (a.data.start < b.data.start) return -1;
+            if (a.data.start > b.data.start) return 1;
+            return 0;
+          })
           .reverse()[0];
       },
     },
