@@ -1,40 +1,40 @@
 <template>
   <nav
-    class="navbar has-shadow"
     role="navigation"
     aria-label="main navigation"
   >
-    <div class="container">
-      <div class="navbar-menu">
-        <div class="navbar-start">
+    <div class="tabs">
+      <div class="container">
+        <ul>
           <template v-if="isLoggedIn">
             <router-link
               :to="{ name: 'home' }"
-              class="navbar-item is-tab"
+              tag="li"
             >
-              Shields leaderboard
+              <a>Shields leaderboard</a>
             </router-link>
             <router-link
               :to="{ name: 'current-season' }"
-              class="navbar-item is-tab"
+              tag="li"
             >
-              Current season
+              <a>Current season</a>
             </router-link>
             <router-link
               :to="{ name: 'last-season' }"
-              class="navbar-item is-tab"
+              tag="li"
             >
-              Last season
+              <a>Last season</a>
             </router-link>
           </template>
-          <router-link
-            v-else
-            :to="{ name: 'home' }"
-            class="navbar-item is-tab"
-          >
-            Home
-          </router-link>
-        </div>
+          <template v-else>
+            <router-link
+              :to="{ name: 'home' }"
+              tag="li"
+            >
+              <a>Home</a>
+            </router-link>
+          </template>
+        </ul>
       </div>
     </div>
   </nav>

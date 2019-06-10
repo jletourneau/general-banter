@@ -1,8 +1,10 @@
 <template>
   <div class="app">
     <nav-bar />
-    <main class="container">
-      <router-view />
+    <main class="section">
+      <div class="container">
+        <router-view />
+      </div>
     </main>
     <app-footer />
   </div>
@@ -26,11 +28,7 @@
     flex-direction: column;
     min-height: 100vh;
   }
-  main {
+  .section {
     flex: 1;
-    margin: {
-      top: $margin-md;
-      bottom: $margin-md;
-    }
   }
 </style>

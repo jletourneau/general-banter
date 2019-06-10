@@ -84,3 +84,9 @@
     },
   };
 </script>
+
+<style lang="scss" scoped>
+  .title {
+    margin: 0 0 $margin-md;
+  }
+</style>

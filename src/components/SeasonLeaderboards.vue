@@ -76,8 +76,13 @@
 </script>
 
 <style lang="scss" scoped>
+  .title {
+    margin: 0;
+  }
   .season-header {
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
+    margin-bottom: $margin-md;
   }
 </style>
